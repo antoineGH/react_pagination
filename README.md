@@ -1,4 +1,4 @@
-# React Currency
+# React Pagination
 
 # Table of contents
 
@@ -9,13 +9,9 @@
 
 ## 1. Project description<a name="description"></a>
 
-Currency is designed to convert one currency into another in order to check its corresponding value.
+React Pagination is an implementation of a ReactJS dumb component to render a pagination.
 
-This react front project contact a Foreign exchange rates API. D
-
-> https://exchangeratesapi.io/
-
-Data are published hourly by the European Central Bank.
+Data are provided from the following JSON: [newsFeedJson.js](src\utils\newsFeedJson.js)
 
 ## 2. Installation instructions<a name="installation"></a>
 
