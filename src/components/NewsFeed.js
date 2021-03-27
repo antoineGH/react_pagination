@@ -18,6 +18,7 @@ export default class NewsFeed extends Component {
 		super(props)
 		this.state = {
 			stories: [],
+			currentItems: [],
 			hasError: false,
 			hasLoaded: false,
 		}
@@ -27,6 +28,7 @@ export default class NewsFeed extends Component {
 		fetchNewsFeed(endpoint, interests)
 			.then((response) => {
 				this.setState({ stories: response.stories, hasError: false, hasLoaded: true })
+				this.handlePageChange(1)
 			})
 			.catch((error) => {
 				this.setState({ hasError: true })
@@ -38,12 +40,22 @@ export default class NewsFeed extends Component {
 	}
 
 	handlePageChange(pageNumber) {
+		const { stories } = this.state
+		const totalItemsCount = stories.length
+		const pageLimit = Math.ceil(totalItemsCount / 10)
+
 		console.log(`active page is ${pageNumber}`)
-		this.setState({ activePage: pageNumber })
+		console.log(`total pages are ${totalItemsCount}`)
+		console.log(`limit per page is ${pageLimit}`)
+
+		const offset = (pageNumber - 1) * pageLimit
+		const currentItems = stories.slice(offset, offset + pageLimit)
+		console.log(currentItems)
+		this.setState({ activePage: pageNumber, currentItems: currentItems })
 	}
 
 	render() {
-		const { hasError, hasLoaded, stories } = this.state
+		const { hasError, hasLoaded, currentItems } = this.state
 
 		if (hasError) {
 			return (
@@ -72,7 +84,7 @@ export default class NewsFeed extends Component {
 				<Container>
 					<Row>
 						<Col className='mt-5'>
-							{stories.map((news) => {
+							{currentItems.map((news) => {
 								return (
 									<Card key={news.uuid} className='card_news text-center justify-content-center mx-auto mb-1' style={{ width: '98%' }}>
 										<Card.Body className='card_news_body'>
@@ -110,7 +122,7 @@ export default class NewsFeed extends Component {
 								pageRangeDisplayed={10}
 								activePage={this.state.activePage}
 								itemsCountPerPage={10}
-								totalItemsCount={100}
+								totalItemsCount={this.state.stories.length}
 								onChange={this.handlePageChange.bind(this)}
 								itemClass='page-item'
 								linkClass='page-link'
