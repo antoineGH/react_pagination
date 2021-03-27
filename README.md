@@ -61,4 +61,4 @@ npm start
 
 ## 5. Screenshots<a name="screenshots"></a>
 
-![Currency Screenshot](https://github.com/antoineratat/react_currency/blob/main/screenshots/1.PNG?raw=true)
+![Pagination Screenshot](https://github.com/antoineratat/react_pagination/blob/main/screenshots/1.PNG?raw=true)
