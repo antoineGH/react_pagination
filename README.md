@@ -11,7 +11,7 @@
 
 React Pagination is an implementation of a ReactJS dumb component to render a pagination.
 
-Data are provided from the following JSON: [newsFeedJson.js](./src/utils/newsFeedJson.js)
+Data are provided from the following JSON: [newsFeedJson.js](src\utils\newsFeedJson.js)
 
 ## 2. Installation instructions<a name="installation"></a>
 
