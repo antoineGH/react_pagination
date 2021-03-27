@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 
 import Pagination from 'react-js-pagination'
-
-import fetchNewsFeed from '../utils/fetchNewsFeed'
+import { news } from '../utils/newsFeedJson'
 
 import BarLoader from 'react-spinners/BarLoader'
 
@@ -10,8 +9,6 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
-
-// require('bootstrap/less/bootstrap.less')
 
 export default class NewsFeed extends Component {
 	constructor(props) {
@@ -24,19 +21,15 @@ export default class NewsFeed extends Component {
 		}
 	}
 
-	getNewsFeed(endpoint, interests) {
-		fetchNewsFeed(endpoint, interests)
-			.then((response) => {
-				this.setState({ stories: response.stories, hasError: false, hasLoaded: true })
-				this.handlePageChange(1)
-			})
-			.catch((error) => {
-				this.setState({ hasError: true })
-			})
+	getNewsFeed() {
+		setTimeout(() => {
+			this.setState({ stories: news, hasError: false, hasLoaded: true })
+			this.handlePageChange(1)
+		}, 500)
 	}
 
 	componentDidMount() {
-		this.getNewsFeed('cityfalcon', ['Google, Apple, Tesla'])
+		this.getNewsFeed()
 	}
 
 	handlePageChange(pageNumber) {
@@ -79,7 +72,9 @@ export default class NewsFeed extends Component {
 					</Row>
 				</Container>
 			)
-		} else {
+		}
+
+		if (!hasError && hasLoaded) {
 			return (
 				<Container>
 					<Row>
