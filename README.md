@@ -57,4 +57,4 @@ npm start
 
 ## 5. Screenshots<a name="screenshots"></a>
 
-![Pagination Screenshot](https://templars.guru/app/github/react_pagination/1.PNG)
+![Pagination Screenshot](https://github.com/antoineratat/github_docs/blob/main/react_pagination/1.PNG?raw=true)
